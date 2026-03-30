@@ -1,0 +1,21 @@
+# Python environments and cache
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Project specific databases
+career_pro.db
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Project temporary debug scripts
+debug_predict.py
+debug_sensitivity.py
+analyze_model.py
+test_logic.py
+test_api.py

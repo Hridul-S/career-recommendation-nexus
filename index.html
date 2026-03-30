@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAREER INTELLIGENCE NEXUS | Advanced AI Career Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.4);
+            --secondary: #a855f7;
+            --bg-dark: #030712;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f9fafb;
+            --text-dim: #9ca3af;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Abstract background shapes */
+        .bg-blob {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
+        .blob-1 { top: -200px; left: -200px; }
+        .blob-2 { bottom: -200px; right: -200px; background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%); }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0; width: 100%; z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo { 
+            font-family: 'Outfit', sans-serif; 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none; 
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .btn-nav {
+            padding: 0.7rem 1.4rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .btn-nav:hover { background: white; color: var(--bg-dark); }
+
+        /* Hero */
+        .hero {
+            padding: 14rem 8% 10rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 100px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size:clamp(3rem, 8vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 0 auto 3.5rem;
+            font-weight: 400;
+        }
+
+        .btn-cta {
+            padding: 1.2rem 2.8rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px -5px var(--primary-glow);
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 15px 30px -5px var(--primary-glow); }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 6rem 8%;
+            border-top: 1px solid var(--glass-border);
+        }
+        .stat-item h2 { font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: white; }
+        .stat-item p { color: var(--text-dim); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Features */
+        .section-title { text-align: center; margin-bottom: 5rem; }
+        .section-title h2 { font-family: 'Outfit', sans-serif; font-size: 3rem; margin-bottom: 1rem; }
+        .section-title p { color: var(--text-dim); }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 0 8% 10rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 24px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card:hover { border-color: rgba(99, 102, 241, 0.4); transform: translateY(-5px); }
+        .feature-card i {
+            display: block;
+            width: 48px; height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .feature-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; margin-bottom: 1rem; }
+        .feature-card p { color: var(--text-dim); font-size: 1.05rem; }
+
+        /* How it works */
+        .workflow {
+            background: rgba(17, 24, 39, 0.5);
+            padding: 10rem 8%;
+            border-top: 1px solid var(--glass-border);
+        }
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            position: relative;
+        }
+        .step { position: relative; }
+        .step-num {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            top: -1.5rem; left: -0.5rem;
+            line-height: 1;
+        }
+        .step h4 { font-family: 'Outfit', sans-serif; font-size: 1.4rem; margin-bottom: 1rem; color: white; }
+
+        footer {
+            padding: 5rem 8%;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1.5rem 5%; }
+            .nav-links { display: none; }
+            .hero { padding-top: 10rem; }
+            h1 { font-size: 3.5rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <nav>
+        <a href="/" class="logo">CAREER INTELLIGENCE NEXUS</a>
+        <div class="nav-links">
+            <a href="#features">Intelligence</a>
+            <a href="#workflow">Workflow</a>
+            <a href="/login" class="btn-nav">Sign In</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="badge">POWERED BY ADVANCED ML</div>
+            <h1>Your Future, <br><span>Optimized by AI</span></h1>
+            <p>Go beyond general advice. Our neural network analyzes your specific skill graph to recommend the career paths where you'll actually excel.</p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="/login" class="btn-cta">Start Free Analysis</a>
+                <a href="#workflow" class="btn-nav" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;">See How it Works</a>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-item"><h2>98%</h2><p>Accuracy Rate</p></div>
+            <div class="stat-item"><h2>50+</h2><p>Career Verticals</p></div>
+            <div class="stat-item"><h2>2.4k</h2><p>Paths Analyzed</p></div>
+        </section>
+
+        <section id="features" class="container">
+            <div class="section-title">
+                <h2>Precision Features</h2>
+                <p>Designed for academic excellence and professional clarity.</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <i><div style="position: absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:var(--primary); font-weight:800;">01</div></i>
+                    <h3>Deep Matching</h3>
+                    <p>We analyze 20+ data points including GPA, technical stack, and hobbyist projects for radical precision.</p>
+                </div>
+                <div class="feature-card">
+                    <i><div style="position: absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:var(--primary); font-weight:800;">02</div></i>
+                    <h3>Growth Roadmaps</h3>
+                    <p>Don't just get a title. Get a multi-phase learning plan to bridge your current gap to your dream role.</p>
+                </div>
+                <div class="feature-card">
+                    <i><div style="position: absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:var(--primary); font-weight:800;">03</div></i>
+                    <h3>Industry Benchmarking</h3>
+                    <p>Compare your profile against thousands of successful professionals in the same vertical.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="workflow" class="workflow">
+            <div class="section-title">
+                <h2>The Intelligence Loop</h2>
+            </div>
+            <div class="step-grid">
+                <div class="step">
+                    <span class="step-num">01</span>
+                    <h4>Profile Analysis</h4>
+                    <p style="color: var(--text-dim);">Input your academic and technical profile into our processing engine.</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">02</span>
+                    <h4>ML Prediction</h4>
+                    <p style="color: var(--text-dim);">Our model runs simulations against current industry requirements.</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">03</span>
+                    <h4>Dynamic Mapping</h4>
+                    <p style="color: var(--text-dim);">Review your top 3 paths and download a professional-grade roadmap report.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Career Intelligence Nexus. Built for Professional Success.</p>
+    </footer>
+</body>
+</html>
